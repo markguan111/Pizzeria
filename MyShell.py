@@ -18,7 +18,8 @@ for pizza in pizzas1:
 p = Pizza.objects.get(id=1)
 print(p)
 
-#toppings = p.Topping_set.all()
+toppings = p.topping_set.all()
 
-#for t in toppings:
-   #print(t)
+for t in toppings:
+   print(t)
+   
