@@ -24,16 +24,16 @@ def pizzas2(request,pizzas2_id):
 
     return render(request,'pizzas/pizzas2.html',context)
 
+
+def pizzas3(request,pizzas3_id):
+    pizzas3 = Pizza.objects.get(id=pizzas3_id)
+
+    comments = pizzas3.comment_set.all()
+
+    context = {'pizzas3': pizzas3, 'comments':comments}
+
+    return render(request,'pizzas/pizzas3.html',context)
 '''
-def comment(request,pizzas2_id):
-    pizzas2 = Pizza.objects.get(id=pizzas2_id)
-
-    comments = pizzas2.Comment_set.all()
-
-    context = {'pizzas2': pizzas2, 'comments':comments}
-
-    return render(request,'pizzas/pizzas2.html',context)
-
 def pizzas3(request):
       if request.method != 'POST' :
           form = commentform()
