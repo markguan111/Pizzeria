@@ -9,6 +9,8 @@ urlpatterns = [
     path('',views.index,name='index'),
     path('pizzas1',views.pizzas1,name='pizzas1'),
     path('pizzas1/<int:pizzas2_id>/',views.pizzas2,name='pizzas2'),
+    #path('pizzas1/<int:pizzas2_id>/',views.Comment,name='Comment'),
+    #path('pizzas3/',views.pizzas3,name='pizzas3'),
     
     
     
