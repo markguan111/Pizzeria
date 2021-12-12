@@ -1,8 +1,8 @@
 from django.shortcuts import redirect, render
 
+from .forms import CommentForm
 
-
-from .models import Pizza
+from .models import Comment, Pizza
 
 # Create your views here.
 def index(request):
@@ -17,37 +17,34 @@ def pizzas1(request):
 
 def pizzas2(request,pizzas2_id):
     pizzas2 = Pizza.objects.get(id=pizzas2_id)
+    
 
     toppings = pizzas2.topping_set.all()
+    comment = pizzas2.comment_set.all()
+    
 
-    context = {'pizzas2': pizzas2, 'toppings':toppings}
+    context = {'pizzas2':pizzas2, 'toppings':toppings, 'comment':comment}
 
     return render(request,'pizzas/pizzas2.html',context)
 
 
-def pizzas3(request,pizzas3_id):
-    pizzas3 = Pizza.objects.get(id=pizzas3_id)
 
-    comments = pizzas3.comment_set.all()
-
-    context = {'pizzas3': pizzas3, 'comments':comments}
-
-    return render(request,'pizzas/pizzas3.html',context)
-'''
-def pizzas3(request):
-      if request.method != 'POST' :
-          form = commentform()
+def new_comment(request, pizzas2_id):
+    pizzas2 = Pizza.objects.get(id=pizzas2_id)
+    if request.method != 'POST' :
+          form = CommentForm()
       
-      else:
-          form = commentform(data=request.POST)
-          if form.is_valid():
-              form.save()
-
-              return redirect('pizzas:pizzas1')
+    else:
+        form = CommentForm(data=request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.pizzas2 = pizzas2
+            new_comment.save()
+            return redirect('pizzas:pizzas2', pizzas2_id=pizzas2_id)
       
-      context = {'form': form }
-      return render(request,'pizzas/pizzas3.html',context)
-      '''
+    context = {'form':form ,'pizzas2':pizzas2}
+    return render(request,'pizzas/new_comment.html',context)
+      
 
 
            

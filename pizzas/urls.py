@@ -9,8 +9,7 @@ urlpatterns = [
     path('',views.index,name='index'),
     path('pizzas1',views.pizzas1,name='pizzas1'),
     path('pizzas1/<int:pizzas2_id>/',views.pizzas2,name='pizzas2'),
-    path('pizzas1/<int:pizzas3_id>/',views.pizzas3,name='pizzas3'),
-    #path('pizzas3/',views.pizzas3,name='pizzas3'),
+    path('new_comment/<int:pizzas2_id>',views.new_comment,name='new_comment'),
     
     
     
