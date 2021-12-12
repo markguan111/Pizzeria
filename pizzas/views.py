@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 
 from .forms import CommentForm
 
-from .models import Comment, Pizza
+from .models import Comment, Pizza,Image
 
 # Create your views here.
 def index(request):
@@ -21,9 +21,9 @@ def pizzas2(request,pizzas2_id):
 
     toppings = pizzas2.topping_set.all()
     comment = pizzas2.comment_set.all()
-    
-
-    context = {'pizzas2':pizzas2, 'toppings':toppings, 'comment':comment}
+    image  = Image.objects.get(pizza=pizzas2)
+    print(image)
+    context = {'pizzas2':pizzas2, 'toppings':toppings, 'comment':comment,'image':image}
 
     return render(request,'pizzas/pizzas2.html',context)
 

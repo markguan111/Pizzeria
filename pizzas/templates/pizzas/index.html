@@ -10,8 +10,12 @@
 
     <a class="btn btn-lg btn-primary" href="{% url 'pizzas:pizzas1' %}" role="button">Pizzas &raquo;</a>
 
-
-
+   
 </div>
+
+
+{% load static %} <img src="{% static "pizzas/media/Home1.jpg" %}" alt="Pizzeria" width="550" height="350" />
+{% load static %} <img src="{% static "pizzas/media/Homepage.jpg" %}" alt="Pizzeria" width="550" height="350" />
+
 
 {% endblock page_header %}
