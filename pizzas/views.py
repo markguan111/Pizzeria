@@ -38,7 +38,7 @@ def new_comment(request, pizzas2_id):
         form = CommentForm(data=request.POST)
         if form.is_valid():
             new_comment = form.save(commit=False)
-            new_comment.pizzas2 = pizzas2
+            new_comment.pizza = pizzas2
             new_comment.save()
             return redirect('pizzas:pizzas2', pizzas2_id=pizzas2_id)
       
